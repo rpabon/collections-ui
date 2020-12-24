@@ -7,10 +7,14 @@ import css from './SideBar.module.scss';
 export function AddCollection() {
   const dispatch = useDispatch();
 
+  function onClick() {
+    dispatch(addCollection());
+  }
+
   return (
     <h3 className={css.title}>
       Collections
-      <button onClick={() => void dispatch(addCollection())}>
+      <button onClick={onClick}>
         <FaPlus />
       </button>
     </h3>

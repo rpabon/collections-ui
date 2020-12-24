@@ -31,7 +31,9 @@ export const collectionsSlice = createSlice({
       collection.name = payload.name;
     },
     addCollection(state) {
-      state.list.push(createNewCollection(state.list.length));
+      const newCollection = createNewCollection(state.list.length);
+      state.list.push(newCollection);
+      state.currentId = newCollection.id;
     },
     addCollectionItem(
       state,
