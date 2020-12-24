@@ -1,34 +1,35 @@
 import React from 'react';
 import { FaTimes } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  removeCollectionItem,
+  selectCurrentCollection,
+} from '../../store/collectionsSlice';
 import css from './CollectionItems.module.scss';
 
-const cards = [
-  { id: 'id1', url: 'https://zeit.de/' },
-  { id: 'id2', url: 'https://tagesschau.de/' },
-  { id: 'id3', url: 'https://tagesschau.de/' },
-  { id: 'id4', url: 'https://tagesschau.de/' },
-  { id: 'id5', url: 'https://tagesschau.de/' },
-  { id: 'id6', url: 'https://tagesschau.de/' },
-  { id: 'id7', url: 'https://tagesschau.de/' },
-];
+export function Cards() {
+  const { id, items } = useSelector(selectCurrentCollection);
+  const dispatch = useDispatch();
 
-export function Cards(props: CardsProps) {
-  const {} = props;
+  function removeItem(itemId: number) {
+    dispatch(removeCollectionItem({ id, itemId }));
+  }
 
   return (
     <div className={css.cards}>
-      {cards.map((item) => (
-        <div key={item.id} className={css.card}>
-          <button className={css.cardClose}>
+      {items.map(({ id, url, imageURL }) => (
+        <div key={id} className={css.card}>
+          <button className={css.cardClose} onClick={() => void removeItem(id)}>
             <FaTimes />
           </button>
 
-          <div className={css.cardImage}></div>
-          <div className={css.cardInfo}>{item.url}</div>
+          <div className={css.cardImage}>
+            <img alt={url} src={imageURL} />
+          </div>
+
+          <div className={css.cardInfo}>{url}</div>
         </div>
       ))}
     </div>
   );
 }
-
-interface CardsProps {}

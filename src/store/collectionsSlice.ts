@@ -2,15 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '.';
 import { Collection } from '../types/Collection';
 import { CollectionItem } from '../types/CollectionItem';
-
-interface CollectionState {
-  currentId: Collection['id'];
-  list: Collection[];
-}
-
-function createNewCollection(length: number = 0): Collection {
-  return { id: +new Date(), name: `Title ${length + 1}`, items: [] };
-}
+import { CollectionState } from '../types/CollectionState';
+import { createNewCollection, getCollection } from './utils';
 
 const initialCollection = createNewCollection();
 const initialState: CollectionState = {
@@ -32,11 +25,10 @@ export const collectionsSlice = createSlice({
       state,
       { payload }: PayloadAction<Pick<Collection, 'id' | 'name'>>
     ) {
-      const collection = state.list.find((c) => c.id === payload.id);
+      const collection = getCollection(state, payload.id);
+      if (!collection) return;
 
-      if (collection) {
-        collection.name = payload.name;
-      }
+      collection.name = payload.name;
     },
     addCollection(state) {
       state.list.push(createNewCollection(state.list.length));
@@ -45,10 +37,23 @@ export const collectionsSlice = createSlice({
       state,
       { payload }: PayloadAction<{ id: Collection['id']; item: CollectionItem }>
     ) {
-      const collection = state.list.find(({ id }) => id === payload.id);
+      const collection = getCollection(state, payload.id);
       if (!collection) return;
 
       collection.items.push(payload.item);
+    },
+    removeCollectionItem(
+      state,
+      action: PayloadAction<{
+        id: Collection['id'];
+        itemId: CollectionItem['id'];
+      }>
+    ) {
+      const { id, itemId } = action.payload;
+      const collection = getCollection(state, id);
+      if (!collection) return;
+
+      collection.items = collection.items.filter((item) => item.id !== itemId);
     },
   },
 });
@@ -58,6 +63,7 @@ export const {
   setCollectionName,
   addCollection,
   addCollectionItem,
+  removeCollectionItem,
 } = collectionsSlice.actions;
 
 export const selectCollections = (state: RootState) => state.collections.list;

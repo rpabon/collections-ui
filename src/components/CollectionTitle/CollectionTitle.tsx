@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -12,6 +12,11 @@ export function CollectionTitle() {
   const originalName = useRef(name);
   const [value, setValue] = useState(name);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setValue(name);
+    originalName.current = name;
+  }, [name]);
 
   function setNewName() {
     if (!value) {
