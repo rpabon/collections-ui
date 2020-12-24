@@ -1,18 +1,18 @@
 import React from 'react';
 import { FaPlus } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { addCollection } from '../../store/collectionsSlice';
 import css from './SideBar.module.scss';
 
-export function AddCollection(props: AddCollectionProps) {
-  const {} = props;
+export function AddCollection() {
+  const dispatch = useDispatch();
 
   return (
     <h3 className={css.title}>
       Collections
-      <button>
+      <button onClick={() => void dispatch(addCollection())}>
         <FaPlus />
       </button>
     </h3>
   );
 }
-
-interface AddCollectionProps {}
