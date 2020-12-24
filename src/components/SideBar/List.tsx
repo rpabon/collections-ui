@@ -1,32 +1,31 @@
 import React from 'react';
-import { FaPaperclip } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  selectCollections,
-  setCurrentCollectionId,
-} from '../../store/collectionsSlice';
+import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
+import { selectCollections } from '../../store/collectionsSlice';
+import { ListItem } from './ListItem';
 import css from './SideBar.module.scss';
+
+const variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.5 },
+  },
+};
 
 export function List() {
   const collections = useSelector(selectCollections);
-  const dispatch = useDispatch();
 
   return (
-    <ul className={css.list}>
-      {collections.map(({ id, name, items }) => (
-        <li key={id}>
-          <button
-            className={css.listItem}
-            onClick={() => void dispatch(setCurrentCollectionId(id))}
-          >
-            <span className={css.listItemName}>
-              <FaPaperclip />
-              {name}
-            </span>
-            <span className={css.count}>{items.length}</span>
-          </button>
-        </li>
+    <motion.ul
+      className={css.list}
+      variants={variants}
+      initial="hidden"
+      animate="show"
+    >
+      {collections.map((collection) => (
+        <ListItem key={collection.id} {...collection} />
       ))}
-    </ul>
+    </motion.ul>
   );
 }

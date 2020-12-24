@@ -14,7 +14,7 @@ export function AddCollection() {
   return (
     <h3 className={css.title}>
       Collections
-      <button onClick={onClick}>
+      <button className={css.addButton} onClick={onClick}>
         <FaPlus />
       </button>
     </h3>
