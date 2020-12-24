@@ -1,0 +1,68 @@
+@import '../../styles/variables';
+
+.sideBar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: $side-bar-width;
+  padding: 32px 16px;
+  border-right: 1px solid $gray-light;
+  color: $gray;
+}
+
+.title,
+.listItem,
+.listItemName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title > button {
+  color: $primary-color;
+}
+
+.list {
+  margin-top: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.listItem,
+.count {
+  transition: all 0.3s ease-in;
+  transition-property: color, background-color;
+}
+
+.listItem {
+  padding: 4px 0 4px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    color: $primary-color;
+    background-color: $gray-lighter;
+
+    & > .count {
+      color: $gray;
+      background-color: $primary-color-light;
+      border-color: $white;
+    }
+  }
+}
+
+.listItemName > svg {
+  margin-right: 18px;
+}
+
+.count {
+  font-family: $font-inter;
+  margin-left: auto;
+  padding: 1px 6px;
+  font-size: 10px;
+  line-height: 16px;
+  border: 1px solid transparent;
+  border-radius: 100%;
+  background-color: $gray-light;
+}

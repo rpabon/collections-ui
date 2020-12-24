@@ -1,0 +1,104 @@
+@import '../../styles/variables';
+
+.topSection,
+.inputGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topSection {
+  padding-top: 32px;
+  padding-bottom: 42px;
+}
+
+.toggleList {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.inputGroupWrapper {
+  position: relative;
+}
+
+.linkIcon {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  color: $primary-color;
+  font-size: 16px;
+}
+
+.inputField,
+.button {
+  font-family: $font-inter;
+  height: 32px;
+  border-radius: 4px;
+}
+
+.inputField {
+  font-weight: 400;
+  width: 246px;
+  padding: 4px 16px 4px 37px;
+  margin-right: 16px;
+  border: 1px solid $gray-light;
+  box-shadow: inset 0px 0px 1px rgba($black, 0.05),
+    inset 0px 1px 3px rgba($black, 0.1);
+
+  &::placeholder {
+    color: $gray;
+  }
+}
+
+.button {
+  font-weight: bold;
+  padding: 2px 30px;
+  color: $primary-color;
+  background-color: $white;
+  border: 2px solid $primary-color;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in;
+  transition-property: color, background-color;
+
+  &:hover {
+    color: $white;
+    background-color: $primary-color;
+  }
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  position: relative;
+  flex-shrink: 0;
+  width: 182px;
+  margin-right: 24px;
+  margin-bottom: 24px;
+
+  &:nth-child(4) {
+    margin-right: 0;
+  }
+}
+
+.cardClose {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.cardImage {
+  height: 160px;
+  background: linear-gradient(307.7deg, $primary-color-light 0%, $white 100%);
+}
+
+.cardInfo {
+  height: 40px;
+  padding: 12px 8px;
+  border: 1px solid $gray-light;
+  font-family: $font-inter;
+  font-size: 10px;
+  line-height: 16px;
+}
