@@ -4,9 +4,7 @@ import { ToggleItems } from './ToggleItems';
 import { Cards } from './Cards';
 import css from './CollectionItems.module.scss';
 
-export function CollectionItems(props: CollectionItemsProps) {
-  const {} = props;
-
+export function CollectionItems() {
   return (
     <div className="container">
       <div className={css.topSection}>
@@ -18,5 +16,3 @@ export function CollectionItems(props: CollectionItemsProps) {
     </div>
   );
 }
-
-interface CollectionItemsProps {}

@@ -2,9 +2,7 @@ import React from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 import css from './CollectionItems.module.scss';
 
-export function ToggleItems(props: ToggleItemsProps) {
-  const {} = props;
-
+export function ToggleItems() {
   return (
     <h2 className={css.title}>
       <button className={css.toggleList}>
@@ -14,5 +12,3 @@ export function ToggleItems(props: ToggleItemsProps) {
     </h2>
   );
 }
-
-interface ToggleItemsProps {}

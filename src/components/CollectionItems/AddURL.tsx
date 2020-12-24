@@ -1,27 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaLink } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  addCollectionItem,
-  selectCurrentCollectionId,
-} from '../../store/collectionsSlice';
+import { useAddItem } from './useAddItem';
 import css from './CollectionItems.module.scss';
-import { CollectionItem } from '../../types/CollectionItem';
 
 export function AddURL() {
-  const id = useSelector(selectCurrentCollectionId);
-  const dispatch = useDispatch();
-  const [url, setUrl] = useState('');
-
-  function addItem() {
-    const item: CollectionItem = {
-      id: +new Date(),
-      url,
-      imageURL: '',
-    };
-    dispatch(addCollectionItem({ id, item }));
-    setUrl('');
-  }
+  const { url, updateUrl, addItem } = useAddItem();
 
   return (
     <div className={css.inputGroup}>
@@ -31,7 +14,7 @@ export function AddURL() {
           className={css.inputField}
           placeholder="Url..."
           value={url}
-          onChange={(e) => void setUrl(e.target.value)}
+          onChange={updateUrl}
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
               addItem();

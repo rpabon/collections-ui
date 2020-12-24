@@ -3,9 +3,7 @@ import { AddCollection } from './AddCollection';
 import { List } from './List';
 import css from './SideBar.module.scss';
 
-export function SideBar(props: SideBarProps) {
-  const {} = props;
-
+export function SideBar() {
   return (
     <aside className={css.sideBar}>
       <AddCollection />
@@ -13,5 +11,3 @@ export function SideBar(props: SideBarProps) {
     </aside>
   );
 }
-
-interface SideBarProps {}
