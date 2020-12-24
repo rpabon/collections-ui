@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaLink } from 'react-icons/fa';
 import { useAddItem } from './useAddItem';
+import { Button } from '../Button/Button';
 import css from './CollectionItems.module.scss';
 
 export function AddURL() {
@@ -23,9 +24,9 @@ export function AddURL() {
         />
       </div>
 
-      <button className={css.button} onClick={addItem}>
+      <Button className={css.button} disabled={!url} onClick={addItem} inverted>
         Add
-      </button>
+      </Button>
     </div>
   );
 }

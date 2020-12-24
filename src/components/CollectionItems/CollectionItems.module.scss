@@ -51,19 +51,8 @@
 }
 
 .button {
-  font-weight: bold;
-  padding: 2px 30px;
-  color: $primary-color;
-  background-color: $white;
-  border: 2px solid $primary-color;
-  text-transform: uppercase;
-  transition: all 0.3s ease-in;
-  transition-property: color, background-color;
-
-  &:hover {
-    color: $white;
-    background-color: $primary-color;
-  }
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .cards {
@@ -101,4 +90,50 @@
   font-family: $font-inter;
   font-size: 10px;
   line-height: 16px;
+}
+
+.closeModalWrapper {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba($white, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeModal {
+  width: 350px;
+  height: 208px;
+  padding: 24px;
+  background-color: $white;
+  box-shadow: 0px 0px 1px rgba($black, 0.05), 0px 16px 24px rgba($black, 0.1);
+  border-radius: 10px;
+}
+
+.modalTitle {
+  font-family: $font-inter;
+  font-size: 26px;
+  line-height: 40px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.modalText {
+  font-size: 16px;
+  line-height: 28px;
+  color: $gray;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+
+  & > button {
+    margin-left: 12px;
+  }
 }

@@ -1,22 +1,19 @@
-import React, { useEffect } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import React, { Dispatch, SetStateAction } from 'react';
+import { motion } from 'framer-motion';
 import { FaTimes } from 'react-icons/fa';
 import { CollectionItem } from '../../types/CollectionItem';
 import css from './CollectionItems.module.scss';
 
 const variants = {
-  hidden: { opacity: 0, x: 182, zIndex: -10 },
-  show: { opacity: 1, x: 0, zIndex: 0 },
+  hidden: { opacity: 0, y: -200, zIndex: -10 },
+  show: { opacity: 1, y: 0, zIndex: 0 },
 };
 
 export function Card(props: CardProps) {
-  const { id, url, imageURL, removeItem } = props;
-  const controls = useAnimation();
-  useEffect(() => void controls.start('show'), [controls]);
+  const { id, url, imageURL, setItemId } = props;
 
-  async function onRemove() {
-    await controls.start('hidden');
-    removeItem(id);
+  function onRemove() {
+    setItemId(id);
   }
 
   return (
@@ -24,7 +21,8 @@ export function Card(props: CardProps) {
       className={css.card}
       variants={variants}
       initial="hidden"
-      animate={controls}
+      animate="show"
+      exit="hidden"
     >
       <button className={css.cardClose} onClick={onRemove}>
         <FaTimes />
@@ -40,5 +38,5 @@ export function Card(props: CardProps) {
 }
 
 interface CardProps extends CollectionItem {
-  removeItem(itemId: CollectionItem['id']): void;
+  setItemId: Dispatch<SetStateAction<number>>;
 }
