@@ -1,5 +1,6 @@
 import { Collection } from '../types/Collection';
 import { CollectionState } from '../types/CollectionState';
+import { Boundary, CollectionBoundary } from '../types/DraggingState';
 
 export function getCollection(
   state: CollectionState,
@@ -13,5 +14,15 @@ export function createNewCollection(length: number = 0): Collection {
     id: +new Date(),
     name: `Title ${length + 1}`,
     items: [],
+  };
+}
+
+export function calculateDropArea(boundaries: CollectionBoundary[]): Boundary {
+  const { id, ...boundary } = boundaries[0];
+  const bottomEl = boundaries[boundaries.length - 1];
+
+  return {
+    ...boundary,
+    bottom: bottomEl.bottom,
   };
 }

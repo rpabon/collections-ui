@@ -45,7 +45,11 @@ button {
   font-size: inherit;
 }
 
-.main-layout {
+.App {
+  min-height: 100vh;
+}
+
+.layout-right {
   margin-left: $side-bar-width;
 }
 

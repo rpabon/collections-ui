@@ -14,17 +14,17 @@ const variants = {
 };
 
 export function CloseModal(props: CloseModalProps) {
-  const { itemId, setItemId } = props;
+  const { itemId, setItemToRemoveId } = props;
   const id = useSelector(selectCurrentCollectionId);
   const dispatch = useDispatch();
 
-  function onCancel() {
-    setItemId(0);
+  function clearId() {
+    setItemToRemoveId(0);
   }
 
   function onDelete() {
     dispatch(removeCollectionItem({ id, itemId }));
-    setItemId(0);
+    clearId();
   }
 
   return (
@@ -44,7 +44,7 @@ export function CloseModal(props: CloseModalProps) {
             </p>
 
             <div className={css.modalButtons}>
-              <Button onClick={onCancel} plain>
+              <Button onClick={clearId} plain>
                 cancel
               </Button>
               <Button onClick={onDelete}>delete</Button>
@@ -58,5 +58,5 @@ export function CloseModal(props: CloseModalProps) {
 
 interface CloseModalProps {
   itemId: number;
-  setItemId: Dispatch<SetStateAction<number>>;
+  setItemToRemoveId: Dispatch<SetStateAction<number>>;
 }

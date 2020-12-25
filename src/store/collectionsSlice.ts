@@ -42,6 +42,11 @@ const collectionsSlice = createSlice({
       const collection = getCollection(state, payload.id);
       if (!collection) return;
 
+      const itemIndex = collection.items.findIndex(
+        ({ id }) => id === payload.item.id
+      );
+      if (itemIndex >= 0) return;
+
       collection.items.push(payload.item);
     },
     removeCollectionItem(

@@ -13,7 +13,7 @@ export function Cards() {
     <>
       <div className={css.cards}>
         {items.map((item) => (
-          <Card key={item.id} {...item} setItemId={setItemIdToRemove} />
+          <Card key={item.id} {...item} setItemToRemoveId={setItemIdToRemove} />
         ))}
       </div>
 

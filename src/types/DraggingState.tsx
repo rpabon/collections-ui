@@ -1,16 +1,18 @@
 import { Collection } from './Collection';
 
-export interface CollectionBoundary {
-  id: Collection['id'];
+export interface Boundary {
   top: number;
+  right: number;
   bottom: number;
+  left: number;
+}
+
+export interface CollectionBoundary extends Boundary {
+  id: Collection['id'];
 }
 
 export interface DraggingState {
   draggedOverId: Collection['id'];
-  sideBarBoundaries: {
-    left: number;
-    right: number;
-  };
+  dropArea: Boundary;
   collectionBoundaries: CollectionBoundary[];
 }

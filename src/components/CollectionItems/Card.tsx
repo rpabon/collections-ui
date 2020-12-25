@@ -2,21 +2,17 @@ import React, { Dispatch, memo, SetStateAction } from 'react';
 import { motion } from 'framer-motion';
 import { FaTimes } from 'react-icons/fa';
 import { CollectionItem } from '../../types/CollectionItem';
-import css from './CollectionItems.module.scss';
 import { useDragging } from './useDragging';
+import css from './CollectionItems.module.scss';
 
 const variants = {
   hidden: { opacity: 0, y: -200, zIndex: -10 },
   show: { opacity: 1, y: 0, zIndex: 0 },
 };
 
-export const Card = memo((props: CardProps) => {
-  const { id, url, imageURL, setItemId } = props;
-  const dragProps = useDragging();
-
-  function onRemove() {
-    setItemId(id);
-  }
+export const Card = memo(({ setItemToRemoveId, ...item }: CardProps) => {
+  const dragProps = useDragging(item);
+  const { id, imageURL, url } = item;
 
   return (
     <motion.div
@@ -27,7 +23,10 @@ export const Card = memo((props: CardProps) => {
       animate="show"
       exit="hidden"
     >
-      <button className={css.cardClose} onClick={onRemove}>
+      <button
+        className={css.cardClose}
+        onClick={() => void setItemToRemoveId(id)}
+      >
         <FaTimes />
       </button>
 
@@ -41,5 +40,5 @@ export const Card = memo((props: CardProps) => {
 });
 
 interface CardProps extends CollectionItem {
-  setItemId: Dispatch<SetStateAction<number>>;
+  setItemToRemoveId: Dispatch<SetStateAction<number>>;
 }

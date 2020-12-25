@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Collection } from '../../types/Collection';
 import { useRegisterBoundary } from '../../store/useRegisterBoundary';
 import { setCurrentCollectionId } from '../../store/collectionsSlice';
-import css from './SideBar.module.scss';
 import { selectDraggedOverId } from '../../store/draggingSlice';
+import css from './SideBar.module.scss';
 
 const variants = {
   hidden: { opacity: 0, x: -184 },
@@ -21,7 +21,7 @@ const count = {
 
 export const ListItem = memo((props: Collection) => {
   const { id, name, items } = props;
-  const draggingRef = useRegisterBoundary<HTMLLIElement>(id);
+  const draggingRef = useRegisterBoundary(id);
   const draggedOverId = useSelector(selectDraggedOverId);
   const dispatch = useDispatch();
   const controls = useAnimation();

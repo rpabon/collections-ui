@@ -1,27 +1,18 @@
-import { RefObject, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { registerCollection, registerSidebar } from './draggingSlice';
 import { Collection } from '../types/Collection';
+import { registerCollection } from './draggingSlice';
 
-export function useRegisterBoundary<T>(id?: Collection['id']) {
-  const ref = useRef<T>(null);
+export function useRegisterBoundary(id: Collection['id']) {
+  const ref = useRef<HTMLLIElement>(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //@ts-ignore
     const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
 
-    if (id) {
-      const top = rect?.top || 0;
-      const bottom = rect?.bottom || 0;
-
-      dispatch(registerCollection({ id, top, bottom }));
-    } else {
-      const left = rect?.left || 0;
-      const right = rect?.right || 0;
-
-      dispatch(registerSidebar({ left, right }));
-    }
+    const { top, right, bottom, left } = rect;
+    dispatch(registerCollection({ id, top, right, bottom, left }));
   }, [id, ref, dispatch]);
 
   return ref;

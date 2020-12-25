@@ -5,10 +5,10 @@ import { CollectionItems } from './components/CollectionItems/CollectionItems';
 
 function App() {
   return (
-    <main>
+    <main className="App">
       <SideBar />
 
-      <section className="main-layout">
+      <section className="layout-right">
         <CollectionTitle />
         <CollectionItems />
       </section>
