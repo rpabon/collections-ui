@@ -1,17 +1,24 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
-import collectionsSlice from './collectionsSlice';
+import dragging from './draggingSlice';
+import collections from './collectionsSlice';
 
-const reducers = combineReducers({
-  collections: collectionsSlice,
-});
+// const reducers = combineReducers({
+//   collections,
+//   dragging,
+// });
 
 const persistConfig = { key: 'root', storage };
-const persistedReducer = persistReducer(persistConfig, reducers);
+const persistedCollections = persistReducer(persistConfig, collections);
 
-export const store = configureStore({ reducer: persistedReducer });
+export const store = configureStore({
+  reducer: {
+    dragging,
+    collections: persistedCollections,
+  },
+});
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk<ReturnType = void> = ThunkAction<

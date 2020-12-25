@@ -5,14 +5,14 @@ import { CollectionItems } from './components/CollectionItems/CollectionItems';
 
 function App() {
   return (
-    <>
+    <main>
       <SideBar />
 
       <section className="main-layout">
         <CollectionTitle />
         <CollectionItems />
       </section>
-    </>
+    </main>
   );
 }
 

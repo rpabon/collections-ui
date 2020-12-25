@@ -1,16 +1,18 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, memo, SetStateAction } from 'react';
 import { motion } from 'framer-motion';
 import { FaTimes } from 'react-icons/fa';
 import { CollectionItem } from '../../types/CollectionItem';
 import css from './CollectionItems.module.scss';
+import { useDragging } from './useDragging';
 
 const variants = {
   hidden: { opacity: 0, y: -200, zIndex: -10 },
   show: { opacity: 1, y: 0, zIndex: 0 },
 };
 
-export function Card(props: CardProps) {
+export const Card = memo((props: CardProps) => {
   const { id, url, imageURL, setItemId } = props;
+  const dragProps = useDragging();
 
   function onRemove() {
     setItemId(id);
@@ -18,6 +20,7 @@ export function Card(props: CardProps) {
 
   return (
     <motion.div
+      {...dragProps}
       className={css.card}
       variants={variants}
       initial="hidden"
@@ -35,7 +38,7 @@ export function Card(props: CardProps) {
       <div className={css.cardInfo}>{url}</div>
     </motion.div>
   );
-}
+});
 
 interface CardProps extends CollectionItem {
   setItemId: Dispatch<SetStateAction<number>>;

@@ -11,7 +11,7 @@ const initialState: CollectionState = {
   list: [initialCollection],
 };
 
-export const collectionsSlice = createSlice({
+const collectionsSlice = createSlice({
   name: 'collections',
   initialState,
   reducers: {
