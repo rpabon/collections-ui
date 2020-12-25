@@ -6,8 +6,8 @@ import { useDragging } from './useDragging';
 import css from './CollectionItems.module.scss';
 
 const variants = {
-  hidden: { opacity: 0, y: -200, zIndex: -10 },
-  show: { opacity: 1, y: 0, zIndex: 0 },
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
 };
 
 export const Card = memo(({ setItemToRemoveId, ...item }: CardProps) => {
@@ -21,7 +21,6 @@ export const Card = memo(({ setItemToRemoveId, ...item }: CardProps) => {
       variants={variants}
       initial="hidden"
       animate="show"
-      exit="hidden"
     >
       <button
         className={css.cardClose}

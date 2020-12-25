@@ -67,7 +67,7 @@
   margin-right: 24px;
   margin-bottom: 24px;
 
-  &:nth-child(4) {
+  &:nth-child(4n) {
     margin-right: 0;
   }
 
@@ -85,6 +85,11 @@
 .cardImage {
   height: 160px;
   background: linear-gradient(307.7deg, $primary-color-light 0%, $white 100%);
+
+  & > img {
+    pointer-events: none;
+    object-fit: contain;
+  }
 }
 
 .cardInfo {
@@ -93,7 +98,7 @@
   border: 1px solid $gray-light;
   background-color: $white;
   font-family: $font-inter;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 16px;
 }
 

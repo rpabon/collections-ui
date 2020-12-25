@@ -33,7 +33,6 @@ const collectionsSlice = createSlice({
     addCollection(state) {
       const newCollection = createNewCollection(state.list.length);
       state.list.push(newCollection);
-      state.currentId = newCollection.id;
     },
     addCollectionItem(
       state,

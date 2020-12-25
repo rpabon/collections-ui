@@ -7,17 +7,20 @@ import css from './CollectionItems.module.scss';
 
 export function Cards() {
   const { items } = useSelector(selectCurrentCollection);
-  const [itemIdToRemove, setItemIdToRemove] = useState(0);
+  const [itemToRemoveId, setItemToRemoveId] = useState(0);
 
   return (
     <>
       <div className={css.cards}>
         {items.map((item) => (
-          <Card key={item.id} {...item} setItemToRemoveId={setItemIdToRemove} />
+          <Card key={item.id} {...item} setItemToRemoveId={setItemToRemoveId} />
         ))}
       </div>
 
-      <CloseModal itemId={itemIdToRemove} setItemId={setItemIdToRemove} />
+      <CloseModal
+        itemToRemoveId={itemToRemoveId}
+        setItemToRemoveId={setItemToRemoveId}
+      />
     </>
   );
 }

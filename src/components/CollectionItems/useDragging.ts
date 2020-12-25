@@ -47,7 +47,8 @@ export function useDragging(item: CollectionItem) {
 
   const whileDrag: DraggableProps['whileDrag'] = {
     scale: 0.9,
-    opacity: 0.7,
+    opacity: 0.8,
+    zIndex: 10,
   };
 
   const dragConstraints: DraggableProps['dragConstraints'] = {

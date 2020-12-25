@@ -14,7 +14,7 @@ const variants = {
 };
 
 export function CloseModal(props: CloseModalProps) {
-  const { itemId, setItemToRemoveId } = props;
+  const { itemToRemoveId, setItemToRemoveId } = props;
   const id = useSelector(selectCurrentCollectionId);
   const dispatch = useDispatch();
 
@@ -23,13 +23,13 @@ export function CloseModal(props: CloseModalProps) {
   }
 
   function onDelete() {
-    dispatch(removeCollectionItem({ id, itemId }));
+    dispatch(removeCollectionItem({ id, itemId: itemToRemoveId }));
     clearId();
   }
 
   return (
     <AnimatePresence>
-      {Boolean(itemId) && (
+      {Boolean(itemToRemoveId) && (
         <motion.div className={css.closeModalWrapper} key="modal">
           <motion.div
             className={css.closeModal}
@@ -57,6 +57,6 @@ export function CloseModal(props: CloseModalProps) {
 }
 
 interface CloseModalProps {
-  itemId: number;
+  itemToRemoveId: number;
   setItemToRemoveId: Dispatch<SetStateAction<number>>;
 }

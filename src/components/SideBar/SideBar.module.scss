@@ -40,10 +40,13 @@
   list-style: none;
 }
 
-.listItem,
-.count {
-  transition: all 0.3s ease-in;
-  transition-property: color, background-color;
+.listItemWrapper {
+  transform: scale3d(1, 1, 0) !important;
+  transition: transform 0.3s ease-in;
+
+  &.grow {
+    transform: scale3d(1.5, 1.5, 0) !important;
+  }
 }
 
 .listItem {
@@ -51,6 +54,13 @@
   padding: 4px 16px;
   border-radius: 8px;
   cursor: pointer;
+  transform: scale3d(1, 1, 1);
+  transition: all 0.3s ease-in;
+  transition-property: transform, color, background-color;
+
+  &.grow {
+    transform: scale3d(1.5, 1.5, 1);
+  }
 
   &:hover {
     color: $primary-color;
@@ -78,4 +88,6 @@
   border: 1px solid transparent;
   border-radius: 100%;
   background-color: $gray-light;
+  transition: all 0.3s ease-in;
+  transition-property: color, background-color;
 }
