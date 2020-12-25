@@ -42,11 +42,16 @@
   padding: 4px 16px 4px 37px;
   margin-right: 16px;
   border: 1px solid $gray-light;
+  transition: box-shadow 0.2s ease-in;
   box-shadow: inset 0px 0px 1px rgba($black, 0.05),
     inset 0px 1px 3px rgba($black, 0.1);
 
   &::placeholder {
     color: $gray;
+  }
+
+  &:focus {
+    box-shadow: 0px 0px 9px 0px $primary-color;
   }
 }
 
@@ -80,6 +85,7 @@
   position: absolute;
   top: 12px;
   right: 12px;
+  color: $white;
 }
 
 .cardImage {
