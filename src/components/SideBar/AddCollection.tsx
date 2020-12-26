@@ -14,7 +14,11 @@ export function AddCollection() {
   return (
     <h3 className={css.title}>
       Collections
-      <button className={css.addButton} onClick={onClick}>
+      <button
+        data-testid="add-collection-button"
+        className={css.addButton}
+        onClick={onClick}
+      >
         <FaPlus />
       </button>
     </h3>

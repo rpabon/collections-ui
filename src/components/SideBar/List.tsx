@@ -19,6 +19,7 @@ export function List() {
       variants={variants}
       initial="hidden"
       animate="show"
+      data-testid="collection-list"
     >
       {collections.map((collection) => (
         <ListItem key={collection.id} {...collection} />

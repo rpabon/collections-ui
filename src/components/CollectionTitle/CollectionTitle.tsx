@@ -9,6 +9,7 @@ export function CollectionTitle() {
     <div className={css.container}>
       <div className="container">
         <input
+          data-testid="title-input"
           className={css.input}
           value={inputValue}
           onChange={updateValue}
